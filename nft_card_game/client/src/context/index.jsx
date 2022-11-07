@@ -8,22 +8,23 @@ import { ABI, ADDRESS } from '../contract';
 const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
-    const [walletAddress, setWalletAddress] = useState('')
-    const [provider, setProvider] = useState('')
-    const [contract, setContract] = useState('')
+    const [walletAddress, setWalletAddress] = useState('');
+    const [provider, setProvider] = useState('');
+    const [contract, setContract] = useState('');
+    const [showAlert, setShowAlert] = useState({ status: false, type: 'info', message: '' });
 
     //* Set the wallet address to the state
     const updateCurrentWalletAddress = async () => {
         const account = await window.ethereum.request({ method: 'eth_requestAccounts' });
 
         if(account) setWalletAddress(account[0]);
-    }
+    };
 
     useEffect(() => {
         updateCurrentWalletAddress();
 
         window.ethereum.on('accountsChanged', updateCurrentWalletAddress);
-    }, [])
+    }, []);
 
     //* Set the smart contract the provider to the state
     useEffect(() => {
@@ -38,16 +39,30 @@ export const GlobalContextProvider = ({ children }) => {
            setContract(newContract);
         }
 
-        setSmartContractAndProvider();
-    }, [])
+        const timer = setTimeout(() => setSmartContractAndProvider(), [1000]);
+        //setSmartContractAndProvider();
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
+        if(showAlert?.status) {
+            const timer = setTimeout(() => {
+                setShowAlert({ status: false, type: 'info', message: '' })
+            }, [5000])
+
+            return () => clearTimeout(timer);
+        }
+    }, [showAlert]);
 
     return (
         <GlobalContext.Provider value ={{
-            contract, walletAddress
+            contract, walletAddress,
+            showAlert, setShowAlert
         }}>
             {children}
         </GlobalContext.Provider>
-    )
+    );
 }
 
 export const useGlobalContext = () => useContext(GlobalContext);
