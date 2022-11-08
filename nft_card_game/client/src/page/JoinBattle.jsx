@@ -13,7 +13,7 @@ const JoinBattle = () => {
         setBattleName(battleName);
 
         try {
-            await contract.JoinBattle(battleName);
+            await contract.joinBattle(battleName);
 
             setShowAlert({ 
                 status: true, 
