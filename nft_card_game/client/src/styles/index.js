@@ -34,8 +34,8 @@ const styles = {
 
   // player info component
   playerImg: 'w-14 h-14 object-contain rounded-full',
-  playerHealth: 'flex flex-row bg-white rounded-md p-2 sm:min-w-[512px] min-w-[312px] sm:min-h-[48px] min-h-[40px] bg-opacity-10 backdrop-filter backdrop-blur-lg mx-3',
-  playerHealthBar: 'sm:w-4 w-2 sm:h-8 h-6 rounded-sm',
+  playerHealth: 'flex flex-row bg-white rounded-md p-2 sm:min-w-[410px] min-w-[312px] sm:min-h-[38px] min-h-[40px] bg-opacity-10 backdrop-filter backdrop-blur-lg mx-3',
+  playerHealthBar: 'sm:w-3 w-2 sm:h-6 h-5 rounded-sm',
   playerMana: 'w-14 h-14 rounded-full text-white font-rajdhani font-extrabold text-2xl cursor-pointer',
   playerInfo: 'font-rajdhani font-medium',
   playerInfoSpan: 'font-extrabold text-white',
