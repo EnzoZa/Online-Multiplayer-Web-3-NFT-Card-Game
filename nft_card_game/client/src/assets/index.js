@@ -149,10 +149,10 @@ export const battlegrounds = [
 ];
 
 export const gameRules = [
-  'Card with the same defense and attack point will cancel each other out.',
-  'Attack points from the attacking card will deduct the opposing player’s health points.',
-  'If P1 does not defend, their health wil be deducted by P2’s attack.',
-  'If P1 defends, P2’s attack is equal to P2’s attack - P1’s defense.',
-  'If a player defends, they refill 3 Mana',
-  'If a player attacks, they spend 3 Mana',
+  "Une carte avec le même point de défense et d'attaque s'annulera.",
+  "Les points d'attaque de la carte attaquante déduiront les points de vie du joueur adverse.",
+  'Si P1 ne défend pas, sa santé sera déduite par l\'attaque de P2.',
+  'Si P1 défend, l\'attaque de P2 est égale à l\'attaque de P2 - la défense de P1.',
+  'Si un joueur défend, il recharge 3 Mana',
+  'Si un joueur attaque, il dépense 3 Mana',
 ];
