@@ -29,7 +29,7 @@ const styles = {
 
   // Game page
   gameContainer: 'w-screen min-h-screen bg-cover bg-no-repeat bg-center flex-col',
-  gameMoveBox: 'sm:w-20 w-14 sm:h-20 h-14 rounded-full cursor-pointer border-[2px]',
+  gameMoveBox: 'sm:w-16 w-11.2 sm:h-16 h-11.2 rounded-full cursor-pointer border-[2px]',
   gameMoveIcon: 'w-1/2 h-1/w-1/2 object-contain',
 
   // player info component
@@ -41,12 +41,12 @@ const styles = {
   playerInfoSpan: 'font-extrabold text-white',
 
   // card component
-  cardContainer: 'relative sm:w-[260px] w-[220px] sm:h-[335px] h-[280px] z-0 transition-all',
+  cardContainer: 'relative sm:w-[208px] w-[176px] sm:h-[268px] h-[224px] z-0 transition-all',
   cardImg: 'w-full h-full object-contain',
-  cardPointContainer: 'absolute sm:w-[40px] w-[32px] sm:h-[40px] h-[32px] rounded-[25px] bottom-[31.4%]',
+  cardPointContainer: 'absolute sm:w-[40px] w-[25.6px] sm:h-[32] h-[25.6px] rounded-[20px] bottom-[32.12%]',
   cardPoint: 'font-rajdhani text-[20px] font-bold',
-  cardTextContainer: 'absolute w-full bottom-[13.5%] left-3',
-  cardText: 'font-rajdhani text-[26px] font-bold text-white',
+  cardTextContainer: 'absolute w-full bottom-[10.8%] left-2',
+  cardText: 'font-rajdhani text-[20.8px] font-bold text-white',
 
   // custom button component
   btn: 'px-4 py-2 rounded-lg bg-siteViolet w-fit text-white font-rajdhani font-bold',

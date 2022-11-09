@@ -7,7 +7,7 @@ const healthLevel = (points) => (points >= 12 ? 'bg-green-500' : points >= 6 ? '
 const marginIndexing = (index) => (index !== healthPoints - 1 ? 'mr-1' : 'mr-0');
 
 const PlayerInfo = ({ player, playerIcon, mt }) => (
-  <div className={`${styles.flexCenter} ${mt ? 'mt-4' : 'mb-4'}`}>
+  <div className={`${styles.flexCenter} ${mt ? 'mt-2' : 'mb-2'}`}>
     <img data-for={`Player-${mt ? '1' : '2'}`} data-tip src={playerIcon} alt="player02" className="w-14 h-14 object-contain rounded-full" />
 
     <div
