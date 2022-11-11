@@ -7,7 +7,7 @@ import { attack, attackSound, battlegrounds, defense, defenseSound, player01 as 
 import { playAudio } from '../utils/animation.js';
 
 const Battle = () => {
-    const { contract, gameData,  walletAddress, showAlert, setShowAlert, battleGround, setErrorMessage } = useGlobalContext();
+    const { contract, gameData,  walletAddress, showAlert, setShowAlert, battleGround, setErrorMessage, player1Ref, player2Ref } = useGlobalContext();
     const [player1, setPlayer1] = useState({});
     const [player2, setPlayer2] = useState({})
     const { battlename } = useParams();
@@ -68,6 +68,17 @@ const Battle = () => {
         }
     }
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if(!gameData?.activeBattle){
+                navigate('/');
+            }
+        }, [2000])
+
+        return () => clearTimeout(timer);
+    }, [])
+    
+
   return (
     <div className={`${styles.flexBetween} ${styles.gameContainer} ${battleGround}`}>
 
@@ -83,7 +94,7 @@ const Battle = () => {
             <Card
                 card={player2}
                 title={player2?.playerName}
-                cardRef=''
+                cardRef= {player2Ref}
                 playerTwo 
             />
 
@@ -97,7 +108,7 @@ const Battle = () => {
                 <Card
                     card={player1}
                     title={player1?.playerName}
-                    cardRef=''
+                    cardRef= {player1Ref}
                     restStyles='mt-3' 
                 />
 

@@ -1,5 +1,10 @@
 import { ethers } from 'ethers';
+import { arrayify } from 'ethers/lib/utils';
 import { ABI } from '../contract';
+import { playAudio, sparcle } from '../utils/animation';
+import { defenseSound } from '../assets';
+
+const emptyAccount = '0x0000000000000000000000000000000000000000';
 
 const AddNewEvent = (eventFilter, provider, cb) => {
     //Not have multiple listener for same event
@@ -13,7 +18,16 @@ const AddNewEvent = (eventFilter, provider, cb) => {
     
 }
 
-export const createEventListeners = ({ navigate, contract, provider, walletAddress, setShowAlert, setUpdateGameData }) => {
+const getCoords = (cardRef) => {
+    const { left, top, width, height } = cardRef.current.getBoundingClientRect();
+
+    return {
+        pageX: left + width / 2,
+        pageY: top + height / 2
+    }
+} 
+
+export const createEventListeners = ({ navigate, contract, provider, walletAddress, setShowAlert, setUpdateGameData, player1Ref, player2Ref }) => {
     const NewPlayerEventFilter = contract.filters.NewPlayer();
 
     AddNewEvent(NewPlayerEventFilter, provider, ({ args }) => {
@@ -45,4 +59,21 @@ export const createEventListeners = ({ navigate, contract, provider, walletAddre
         console.log('Battle', args);
     });
 
+    const RoundEndedEventFilter = contract.filters.RoundEnded();
+    AddNewEvent(RoundEndedEventFilter, provider, ({ args }) => {
+        console.log('Round ended', args, walletAddress);
+    });
+
+    for(let i = 0; i < args.damagedPlayers.length; i += 1){
+        if(args.damagedPlayers[i] != emptyAccount){
+            if(args.damagedPlayers[i].toLowerCase() === walletAddress.toLowerCase()){
+                sparcle(getCoords(player1Ref));
+            } else {
+                sparcle(getCoords(player2Ref));
+            }
+        } else {
+            playAudio(defenseSound);
+        }
+    }
+    setUpdateGameData((prevUpdateGameData) => prevUpdateGameData + 1);
 }
