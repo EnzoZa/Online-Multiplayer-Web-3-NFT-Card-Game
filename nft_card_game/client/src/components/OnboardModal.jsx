@@ -11,7 +11,7 @@ const OnboardModal = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(-1);
 
-  const { updateCurrentMetamaskAccount } = useGlobalContext();
+  const { updateCurrentMetamaskAccount, updateCurrentWalletAddress } = useGlobalContext();
 
   async function resetParams() {
     const currentStep = await GetParams();
@@ -43,7 +43,7 @@ const OnboardModal = () => {
         return (
           <>
             <p className={styles.modalText}>You haven't connected your account to Core Wallet!</p>
-            <CustomButton title="Connect Account" handleClick={() => updateCurrentMetamaskAccount()} />
+            <CustomButton title="Connect Account" handleClick={() => updateCurrentWalletAddress()} />
           </>
         );
 
