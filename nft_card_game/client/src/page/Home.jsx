@@ -32,6 +32,8 @@ const Home = () => {
     const checkForPlayerToken = async () => {
       const playerExists = await contract.isPlayer(walletAddress);
       const playerTokenExist = await contract.isPlayerToken;
+      console.log(contract);
+      console.log(playerTokenExist);
       if(playerExists && playerTokenExist) navigate('/create-battle');
     }
 

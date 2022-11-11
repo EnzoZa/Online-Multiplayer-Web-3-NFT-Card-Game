@@ -41,7 +41,7 @@ const Battle = () => {
                 const p2M = player02.playerMana.toNumber();
 
                 setPlayer1( { ...player01, att: p1Att, def: p1Def, health: p1H, mana: p1M } );
-                setPlayer1( { ...player02, att: 'X', def: 'X', health: p2H, mana: p2M } );
+                setPlayer2( { ...player02, att: 'X', def: 'X', health: p2H, mana: p2M } );
 
             } catch (error) {
                 setErrorMessage(error);
@@ -57,7 +57,7 @@ const Battle = () => {
     
         try {
             await contract.attackOrDefendChoice(choice, battlename, {
-                gasLimit: 200000
+                gasLimit: 200000,
             }); 
 
             setShowAlert({

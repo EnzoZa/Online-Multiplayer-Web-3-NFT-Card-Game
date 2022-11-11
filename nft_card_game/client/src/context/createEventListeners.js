@@ -10,8 +10,8 @@ const AddNewEvent = (eventFilter, provider, cb) => {
     //Not have multiple listener for same event
     provider.removeListener(eventFilter);
 
-    provider.on(eventFilter, (log) => {
-        const parsedLog = (new ethers.utils.Interface(ABI)).parseLog(log);
+    provider.on(eventFilter, (logs) => {
+        const parsedLog = (new ethers.utils.Interface(ABI)).parseLog(logs);
 
         cb(parsedLog);
     });
@@ -114,5 +114,6 @@ export const createEventListeners = ({ navigate, contract, provider, walletAddre
         } 
 
         navigate('/create-battle');
+        setUpdateGameData((prevUpdateGameData) => prevUpdateGameData + 1);
     });     
 }
