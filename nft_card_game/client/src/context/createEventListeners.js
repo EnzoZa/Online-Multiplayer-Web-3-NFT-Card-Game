@@ -62,18 +62,45 @@ export const createEventListeners = ({ navigate, contract, provider, walletAddre
     const RoundEndedEventFilter = contract.filters.RoundEnded();
     AddNewEvent(RoundEndedEventFilter, provider, ({ args }) => {
         console.log('Round ended', args, walletAddress);
+
+        for(let i = 0; i < args.damagedPlayers.length; i += 1){
+            if(args.damagedPlayers[i] != emptyAccount){
+                if(args.damagedPlayers[i].toLowerCase() === walletAddress.toLowerCase()){
+                    sparcle(getCoords(player1Ref));
+                } else {
+                    sparcle(getCoords(player2Ref));
+                }
+            } else {
+                playAudio(defenseSound);
+            }
+        }
+        setUpdateGameData((prevUpdateGameData) => prevUpdateGameData + 1);
     });
 
-    for(let i = 0; i < args.damagedPlayers.length; i += 1){
-        if(args.damagedPlayers[i] != emptyAccount){
-            if(args.damagedPlayers[i].toLowerCase() === walletAddress.toLowerCase()){
-                sparcle(getCoords(player1Ref));
-            } else {
-                sparcle(getCoords(player2Ref));
-            }
-        } else {
-            playAudio(defenseSound);
-        }
-    }
-    setUpdateGameData((prevUpdateGameData) => prevUpdateGameData + 1);
+    const BattleEndedEventFilter = contract.filters.BattleEnded();
+    AddNewEvent(BattleEndedEventFilter, provider, ({ args }) => {
+        console.log('Battle ended', args, walletAddress);
+
+        if(args.winner.toLowerCase() === walletAddress.toLowerCase()){
+            setShowAlert({
+                status:true,
+                type:'success',
+                message: 'Vous avez gagné(e) !'
+            });
+        } else if(args.loser.toLowerCase() === walletAddress.toLowerCase()){
+            setShowAlert({
+                status:true,
+                type:'failure',
+                message: 'Vous avez perdu(e) !'
+            });
+        } else if (args.winner == emptyAccount) {
+            setShowAlert({
+                status:true,
+                type:'warning',
+                message: 'Match nul !'
+            });
+        } 
+
+        navigate('/create-battle');
+    });     
 }

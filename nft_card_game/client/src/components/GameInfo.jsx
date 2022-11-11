@@ -11,7 +11,16 @@ const GameInfo = () => {
   const navigate = useNavigate();
 
   const handleBattleExit = async () => {
+    const battleName = gameData.activeBattle.name;
 
+    try {
+      await contract.quitBattle(battleName);
+
+      setShowAlert({ status: true, type: 'failure', message: `Vous quittez  ${battleName}` });
+    } catch (error) {
+      console.log(error);
+      setErrorMessage(error);
+    }
   }
 
   return (
