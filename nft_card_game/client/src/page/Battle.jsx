@@ -7,7 +7,7 @@ import { attack, attackSound, battlegrounds, defense, defenseSound, player01 as 
 import { playAudio } from '../utils/animation.js';
 
 const Battle = () => {
-    const { contract, gameData,  walletAddress, showAlert, setShowAlert, battleGround } = useGlobalContext();
+    const { contract, gameData,  walletAddress, showAlert, setShowAlert, battleGround, setErrorMessage } = useGlobalContext();
     const [player1, setPlayer1] = useState({});
     const [player2, setPlayer2] = useState({})
     const { battlename } = useParams();
@@ -44,7 +44,7 @@ const Battle = () => {
                 setPlayer1( { ...player02, att: 'X', def: 'X', health: p2H, mana: p2M } );
 
             } catch (error) {
-                console.log(error);
+                setErrorMessage(error);
             }
                 
         }
@@ -64,7 +64,7 @@ const Battle = () => {
                 message: `Initialisation de ${choice === 1 ? 'l\'Attaque' : 'la Défense'}`
             });
         } catch (error) {
-            console.log(error);
+           setErrorMessage(error);
         }
     }
 

@@ -5,7 +5,7 @@ import { CustomButton, CustomInput, PageHOC } from '../components'
 import styles from '../styles'
 
 const JoinBattle = () => {
-    const { gameData, setBattleName, contract, setShowAlert, walletAddress } = useGlobalContext();
+    const { gameData, setBattleName, contract, setShowAlert, walletAddress, setErrorMessage } = useGlobalContext();
 
     const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ const JoinBattle = () => {
                  message: `Vous avez rejoint ${battleName}!` 
                 });
         } catch (error) {
-            console.log(error);
+            setErrorMessage(error);
         }
     }
 
