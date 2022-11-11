@@ -37,21 +37,20 @@ export const GlobalContextProvider = ({ children }) => {
     }, [])
 
     //* Reset Web3 onbording Modal params
-    useEffect(() => {
-        const resetParams = async () => {
-            const currentStep = await GetParams();
-            setStep(currentStep.step);
-        }
-
+    async function resetParams() {
+        const currentStep = await GetParams();
+        setStep(currentStep.step);
+      }
+    
+      useEffect(() => {
         resetParams();
-
         window?.ethereum?.on('chainChanged', () => {
-            resetParams();
+          resetParams();
         });
         window?.ethereum?.on('accountsChanged', () => {
-            resetParams();
+          resetParams();
         });
-    }, [GetParams])
+      }, []);
 
     //* Set the wallet address to the state
     const updateCurrentWalletAddress = async () => {
