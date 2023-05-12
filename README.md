@@ -1,3 +1,7 @@
+### See result
+
+https://avaxgods.zampaglione-enzo.fr
+
 # Sample Hardhat Project
 
 This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
@@ -15,7 +19,6 @@ npx hardhat run scripts/deploy.ts
 list of command for initialize the project 
 
 ```shell
-cd web3
 npx hardhat -> y → typescript → enter → enter
 npm install @openzeppelin/contracts dotenv @nomiclabs/hardhat-ethers + Hardhat packages npm install --save-dev "hardhat@^2.12.0" "@nomicfoundation/hardhat-toolbox@^2.0.0"
 Install Core, a Metamask smart wallet alternative built for Avalanche dApps
