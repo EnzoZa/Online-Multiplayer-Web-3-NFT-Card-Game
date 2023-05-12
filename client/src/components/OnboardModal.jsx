@@ -11,7 +11,7 @@ const OnboardModal = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(-1);
 
-  const { updateCurrentMetamaskAccount, updateCurrentWalletAddress } = useGlobalContext();
+  const { updateCurrentWalletAddress } = useGlobalContext();
 
   async function resetParams() {
     const currentStep = await GetParams();
